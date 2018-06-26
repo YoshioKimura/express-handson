@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="URF-8">
+  <title>副業検索ページ</title>
+  <%- include("./_share/stylesheets.ejs") %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1><i class="fa fa-search fa-fw"></i>副業検索くん</h1>
+    </div>
+    <form method="GET" action="/search" class="form-inline">
+      <input type="text" id="keyword" name="keyword" class="form-control" value="" />
+      <input type="submit" value="検索" class="btn btn-default" />
+    </form>
+
+    <div>
+      <% if (list !== null) { %>
+        <% for(var i = 0; i<list.length; i++){ %>
+          <% if (list[i]['title'] !== 'unknown') { %>
+            <%- include("./item.ejs", list[i]) %>
+          <% }else{ %>
+            <%- include("./err.ejs") %>
+          <% } %>
+        <% } %>
+      <% } %>
+    </div>
+
+  </div>
+</body>
+<!-- Include JS files -->
+<script src="/public/third-party/jquery/jquery.min.js"></script>
+<script src="/public/own/js/index.js"></script>
+
+</html>
